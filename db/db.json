@@ -1,0 +1,27 @@
+{
+    "category": [
+      "flowers",
+      "trees"
+    ],
+    "product": [
+      {
+        "id": 1,
+        "name": "roses",
+        "category": "flowers",
+        "price": 5
+      }
+    ],
+    "customer": [
+      {
+        "firstName": "john",
+        "lastName": "smith",
+        "id": 1
+      }
+    ],
+    "cart": [
+      {
+        "id": 1,
+        "quantity": 2
+      }
+    ]
+  }
