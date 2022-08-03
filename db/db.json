@@ -1,28 +1,46 @@
 {
-    "category": [
-      "flowers",
-      "trees",
-      "bushes"
-    ],
-    "product": [
-      {
-        "id": 1,
-        "name": "roses",
-        "category": "flowers",
-        "price": 5
-      }
-    ],
-    "customer": [
-      {
-        "firstName": "john",
-        "lastName": "smith",
-        "id": 1
-      }
-    ],
-    "cart": [
-      {
-        "id": 1,
-        "quantity": 2
-      }
-    ]
-  }
+  "category": [
+    "flowers",
+    "trees",
+    "bushes"
+  ],
+  "product": [
+    {
+      "name": "Roses",
+      "price": "5",
+      "category": "flower",
+      "id": 1
+    },
+    {
+      "name": "Boxwood",
+      "price": "10",
+      "category": "bush",
+      "id": 2
+    },
+    {
+      "name": "Ginkgo",
+      "price": "15",
+      "category": "tree",
+      "id": 3
+    },
+    {
+      "name": "Tulip",
+      "price": "3",
+      "category": "flower",
+      "id": 4
+    }
+  ],
+  "customer": [
+    {
+      "firstName": "john",
+      "lastName": "smith",
+      "id": 1
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "quantity": 2
+    }
+  ]
+}

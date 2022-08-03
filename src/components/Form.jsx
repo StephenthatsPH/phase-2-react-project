@@ -1,25 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Form() {
-    const [plantName, setPlantName] = useState("");
-    const [plantPrice, setPlantPrice] = useState(1);
-    const [plantType, setPlantType] = useState("tree");
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState(1);
+    const [category, setCategory] = useState("tree");
     const [isPending, setIsPending] = useState(false);
+    const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+    if(product) {
+    fetch('http://localhost:8000/product', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(product)
+    }).then(() =>{
+        console.log("new product added");
+        
+        setIsPending(false);
+        setProduct(null);
+    });
+}
+},[product])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const product = (plantName, plantPrice, plantType);
+        //const product = (plantName, plantPrice, plantType);
 
         setIsPending(true)
-
-        fetch('http://localhost:8000/product', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(product)
-        }).then(() =>{
-            console.log("new product added")
-            setIsPending(false);
-        })
+        setProduct({name, price, category})
+        
     }
 
     return (
@@ -29,21 +38,21 @@ function Form() {
                 <br/>
                 <input
                 type="text" 
-                value={plantName}
-                onChange={(e) => setPlantName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 />
                 <br />
                 <label>Plant Price</label>
                 <br/>
                 <input
                 type="text" 
-                value={plantPrice}
-                onChange={(e) => setPlantPrice(e.target.value)} 
+                value={price}
+                onChange={(e) => setPrice(e.target.value)} 
                 />
                 <br/>
                 <label>Plant Type</label>
                 <br/>
-                <select onChange={(e) => setPlantType(e.target.value)}>
+                <select onChange={(e) => setCategory(e.target.value)}>
                     <option value="tree">Tree</option>
                     <option value="bush">Bush</option>
                     <option value="flower">Flower</option>
