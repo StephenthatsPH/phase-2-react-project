@@ -1,6 +1,8 @@
 
 
-function PlantsCard({ product }) {
+function PlantsCard({ product, handleDelete }) {
+
+  
 
     return (
         <div>
@@ -9,6 +11,7 @@ function PlantsCard({ product }) {
                     <h2>{ product.name }</h2>
                     <p>Type: { product.category }</p>
                     <p>${ product.price }</p>
+                    <button onClick={handleDelete}>Delete</button>
                 </div>
             ))}
         </div>

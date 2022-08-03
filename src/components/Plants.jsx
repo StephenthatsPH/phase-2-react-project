@@ -5,6 +5,17 @@ const Plants = ()=> {
     const [product, setProduct] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
+    
+    const handleDelete = () => {
+        fetch('http:localhost:8000/product/' + product.id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'}
+        }).then(() => {
+            console.log('Product has been deleted');
+        })
+    }
 
     useEffect(() => {
         fetch('http://localhost:8000/product')
@@ -29,7 +40,7 @@ const Plants = ()=> {
         <div>
             { error && <div>{ error }</div> }
             {isPending && <div>Loading...</div>}
-            {product && <PlantsCard product={product} />}
+            {product && <PlantsCard product={product} handleDelete={handleDelete}/>}
         </div>
     );
 };
