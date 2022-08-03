@@ -1,15 +1,14 @@
 
 
-function PlantsCard({ plants, handleDelete }) {
+function PlantsCard({ product }) {
 
     return (
         <div>
-            {plants.map((plant) => (
-                <div className="plant-preview" key={plant.id}>
-                    <h2>{ plant.name }</h2>
-                    <p>Type: { plant.type }</p>
-                    <p>${ plant.price }</p>
-                    <button onClick={() => handleDelete(plant.id)}>Delete</button>
+            {product.map((product) => (
+                <div className="plant-preview" key={product.id}>
+                    <h2>{ product.name }</h2>
+                    <p>Type: { product.category }</p>
+                    <p>${ product.price }</p>
                 </div>
             ))}
         </div>

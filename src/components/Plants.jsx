@@ -1,23 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PlantsCard from './PlantsCard';
 
-function Plants() {
-    const [plants, setPlants] = useState([
-        {name: 'Rose', price: 5, type: 'flower', id: 1 },
-        {name: 'Ginkgo', price: 15, type: 'tree', id: 2 },
-        {name: 'Boxwood', price: 10, type: 'bush', id: 3 },
-    ])
+const Plants = ()=> {
+    const [product, setProduct] = useState(null);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
 
-    const handleDelete = (id) => {
-        const newPlants = plants.filter(plant => plant.id !== id);
-        setPlants(newPlants);
-    }
+    useEffect(() => {
+        fetch('http://localhost:8000/product')
+            .then(res => {
+                if(!res.ok) {
+                    throw Error('Could not fetch the data')
+                }
+                return res.json();
+            })
+            .then(data => {
+                setProduct(data)
+                setIsPending(false);
+                setError(null);
+            })
+            .catch(err => {
+                setIsPending(false);
+                setError(err.message);
+            })
+    }, []);
 
     return (
         <div>
-            <PlantsCard plants={plants} handleDelete={handleDelete}/>
+            { error && <div>{ error }</div> }
+            {isPending && <div>Loading...</div>}
+            {product && <PlantsCard product={product} />}
         </div>
     );
-}
+};
 
 export default Plants;
