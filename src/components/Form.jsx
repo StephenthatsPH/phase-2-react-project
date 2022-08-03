@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Form() {
     const [name, setName] = useState("");
@@ -6,6 +7,7 @@ function Form() {
     const [category, setCategory] = useState("tree");
     const [isPending, setIsPending] = useState(false);
     const [product, setProduct] = useState(null);
+    const history= useHistory();
 
     useEffect(() => {
     if(product) {
@@ -18,6 +20,7 @@ function Form() {
         
         setIsPending(false);
         setProduct(null);
+        history.push('/plants')
     });
 }
 },[product])
@@ -28,7 +31,6 @@ function Form() {
 
         setIsPending(true)
         setProduct({name, price, category})
-        
     }
 
     return (
