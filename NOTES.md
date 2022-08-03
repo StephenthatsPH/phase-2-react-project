@@ -36,9 +36,9 @@
 * show all categories
     * show all products for a given category
 * allow customer to add product to cart
-    * shopping cart
-        * update quantity
-        * remove item
-        * show items currently in cart
-    * checkout
-        * calculate total in cart Sum(product price * quantity)
+* shopping cart
+    * update quantity
+    * remove item
+    * show items currently in cart
+* checkout
+    * calculate total in cart Sum(product price * quantity)
