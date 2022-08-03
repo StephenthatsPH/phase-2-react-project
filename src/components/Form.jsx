@@ -2,28 +2,51 @@ import { useState } from 'react';
 
 function Form() {
     const [plantName, setPlantName] = useState("");
-    const [plantPrice, setPlantPrice] = useState();
+    const [plantPrice, setPlantPrice] = useState(1);
+    const [plantType, setPlantType] = useState("tree");
+    const [isPending, setIsPending] = useState(false);
 
-    function handlePlantNameChange(event) {
-        setPlantName(event.target.value);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const product = (plantName, plantPrice, plantType);
+
+        setIsPending(true)
+
+        fetch('http://localhost:3000/product', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(product)
+        }).then(() =>{
+            console.log("new product added")
+            setIsPending(false);
+        })
     }
 
-    function handlePlantPriceChange(event) {
-        setPlantPrice(event.target.value);
-    }
     return (
         <div>
-            <form>
-                <input type="text" onChange={handlePlantNameChange} value={plantName} placeholder="Plant Name"/>
+            <form onSubmit={handleSubmit}>
+                <label>Plant Name</label>
+                <input
+                type="text" 
+                value={plantName}
+                onChange={(e) => setPlantName(e.target.value)}
+                />
                 <br />
-                <input type="text" onChange={handlePlantPriceChange} value={plantPrice} placeholder="Plant Price"/>
+                <label>Plant Price</label>
+                <input
+                type="text" 
+                value={plantPrice}
+                onChange={(e) => setPlantPrice(e.target.value)} 
+                />
                 <br/>
-                <select>
+                <label>Plant Type</label>
+                <select onChange={(e) => setPlantType(e.target.value)}>
                     <option value="tree">Tree</option>
                     <option value="bush">Bush</option>
                     <option value="flower">Flower</option>
                 </select>
-                <button>Submit</button>
+                {!isPending && <button>Submit</button>}
+                {isPending && <button disabled>Adding Plant...</button>}
             </form>
         </div>
     );
