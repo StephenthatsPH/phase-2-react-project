@@ -1,5 +1,5 @@
-import NavBar from "./Navbar";
 import { Route, Switch } from "react-router-dom";
+import NavBar from "./Navbar";
 import Home from "./Home";
 import Plants from "./Plants";
 import Form from "./Form";
