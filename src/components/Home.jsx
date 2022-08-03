@@ -1,3 +1,5 @@
+import Plants from "./Plants";
+
 
 function Home() {
     return (

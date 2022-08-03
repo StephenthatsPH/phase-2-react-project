@@ -12,7 +12,7 @@ function Form() {
 
         setIsPending(true)
 
-        fetch('http://localhost:3000/product', {
+        fetch('http://localhost:8000/product', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(product)
@@ -26,6 +26,7 @@ function Form() {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Plant Name</label>
+                <br/>
                 <input
                 type="text" 
                 value={plantName}
@@ -33,6 +34,7 @@ function Form() {
                 />
                 <br />
                 <label>Plant Price</label>
+                <br/>
                 <input
                 type="text" 
                 value={plantPrice}
@@ -40,6 +42,7 @@ function Form() {
                 />
                 <br/>
                 <label>Plant Type</label>
+                <br/>
                 <select onChange={(e) => setPlantType(e.target.value)}>
                     <option value="tree">Tree</option>
                     <option value="bush">Bush</option>
