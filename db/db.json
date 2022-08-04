@@ -22,6 +22,12 @@
       "price": "15",
       "category": "tree",
       "id": 3
+    },
+    {
+      "name": "Tulip",
+      "price": "5",
+      "category": "flower",
+      "id": 4
     }
   ],
   "customer": [
