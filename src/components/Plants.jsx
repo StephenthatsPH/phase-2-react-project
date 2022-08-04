@@ -9,13 +9,10 @@ const Plants = ()=> {
     const [deleteID, setDeleteID] = useState(null);
     
 
-    const handleDelete = event => {
-        fetch('http:localhost:8000/product/' + product.id, {
-            method: "DELETE",
-        })
-            .then(resp => resp.json())
+    const handleDelete = (productId) => {
+        fetch(`http://localhost:8000/product/${productId}`, 
+        { method: "DELETE" })
             .then(() => console.log('All done'))
-            setDeleteID(true);
     }
 
     useEffect(() => {
@@ -35,7 +32,7 @@ const Plants = ()=> {
                 setIsPending(false);
                 setError(err.message);
             })
-    }, [deleteID]);
+    }, []);
 
     function handleSearchChange(event) {
         setSearchChange(event.target.value);
