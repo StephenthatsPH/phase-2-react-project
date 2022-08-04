@@ -1,5 +1,5 @@
-### Project Overview
-<hr>
+# Project Overview
+
 
 ### MVP Requirements
 
