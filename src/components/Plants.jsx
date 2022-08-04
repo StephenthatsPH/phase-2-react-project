@@ -7,32 +7,39 @@ const Plants = ()=> {
     const [error, setError] = useState(null);
     const [searchChange, setSearchChange] = useState('');
     const [deleteID, setDeleteID] = useState(null);
+    const [refresh, setRefresh] = useState(true);
     
 
     const handleDelete = (productId) => {
         fetch(`http://localhost:8000/product/${productId}`, 
         { method: "DELETE" })
-            .then(() => console.log('All done'))
+            .then(() => {
+                setRefresh(true);
+                console.log('All done');
+            })
     }
 
     useEffect(() => {
-        fetch('http://localhost:8000/product')
-            .then(res => {
-                if(!res.ok) {
-                    throw Error('Could not fetch the data')
-                }
-                return res.json();
-            })
-            .then(data => {
-                setProduct(data)
-                setIsPending(false);
-                setError(null);
-            })
-            .catch(err => {
-                setIsPending(false);
-                setError(err.message);
-            })
-    }, []);
+        if(refresh){
+            fetch('http://localhost:8000/product')
+                .then(res => {
+                    if(!res.ok) {
+                        throw Error('Could not fetch the data')
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setProduct(data)
+                    setIsPending(false);
+                    setError(null);
+                    setRefresh(false);
+                })
+                .catch(err => {
+                    setIsPending(false);
+                    setError(err.message);
+                })
+        }
+    }, [refresh]);
 
     function handleSearchChange(event) {
         setSearchChange(event.target.value);
