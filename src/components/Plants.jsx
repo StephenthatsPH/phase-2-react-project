@@ -5,16 +5,17 @@ const Plants = ()=> {
     const [product, setProduct] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
+    const [searchChange, setSearchChange] = useState('');
+    const [deleteID, setDeleteID] = useState(null);
     
-    const handleDelete = () => {
+
+    const handleDelete = event => {
         fetch('http:localhost:8000/product/' + product.id, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'}
-        }).then(() => {
-            console.log('Product has been deleted');
+            method: "DELETE",
         })
+            .then(resp => resp.json())
+            .then(() => console.log('All done'))
+            setDeleteID(true);
     }
 
     useEffect(() => {
@@ -34,10 +35,25 @@ const Plants = ()=> {
                 setIsPending(false);
                 setError(err.message);
             })
-    }, []);
+    }, [deleteID]);
+
+    function handleSearchChange(event) {
+        setSearchChange(event.target.value);
+    }
 
     return (
         <div>
+            <input
+                type="text"
+                placeholder="Search"
+                onChange={handleSearchChange}
+            >
+            </input>
+            <select>
+                <option>Tree</option>
+                <option>Bush</option>
+                <option>Flower</option>
+            </select>
             { error && <div>{ error }</div> }
             {isPending && <div>Loading...</div>}
             {product && <PlantsCard product={product} handleDelete={handleDelete}/>}
