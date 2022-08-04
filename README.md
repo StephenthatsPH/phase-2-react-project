@@ -14,7 +14,26 @@ The idea behind PlanIT PlantIT is that I wanted some where to go any easily be a
    * create new (with a category association as part of the data)
    * delete existing
 
-## What I would eventually like to do:
+# Project Overview
+
+
+### MVP Requirements
+
+* 5 components
+    1. Home
+    2. Header
+    3. Plants
+    4. Navbar
+    5. Form
+
+* 3 Client-side Routes
+    1. Home - /
+    2. Plants - /plants
+    3. Form - TBD
+
+* JSON server
+
+# What I would eventually like to do:
 ### SuperUser/Admin views
 CRUD for each section of your store.  Category and Product
 ### Category
