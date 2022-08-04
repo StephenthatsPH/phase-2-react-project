@@ -11,7 +11,7 @@ function PlantsCard({ product, handleDelete }) {
                     <h2>{ product.name }</h2>
                     <p>Type: { product.category }</p>
                     <p>${ product.price }</p>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button onClick={() => handleDelete(product.id)}>Delete</button>
                 </div>
             ))}
         </div>
